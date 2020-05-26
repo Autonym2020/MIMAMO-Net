@@ -39,7 +39,7 @@ class Resnet50_Extractor(object):
         # load transformation function
         meta = self.model.meta
         self.transform = compose_transforms(meta, center_crop=True)
-    def run(self, input_dir, output_dir, batch_size=64):
+    def run(self, input_dir, output_dir, batch_size=16):
         '''        
         input_dir: string, 
             The input_dir should have one subdir containing all cropped and aligned face images for 
@@ -56,7 +56,7 @@ class Resnet50_Extractor(object):
             dataset, 
             batch_size = batch_size, 
             shuffle=False, drop_last=False,
-            num_workers=8, pin_memory=False )
+            num_workers=0, pin_memory=False )
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         else:
