@@ -11,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 - python3
 My recommendation is to use Anaconda to create an virtual environment. For example:
 ```
-conda create --name myenv --python=3.6
+conda create --name myenv python=3.6.10
 ```
 And then activate the virtual environment by:
 ```
