@@ -9,7 +9,12 @@ from tqdm import tqdm
 from utils.model_utils import load_model, compose_transforms
 import numpy as np
 from steerable.utils import get_device
+
+
 device = get_device()
+DEV_BATCH_SIZE = 16 # originally 64
+DEV_NUM_WORKERS = 0 # originally 8
+
 class Resnet50_Extractor(object):
     def __init__(self, benchmark_dir = 'pytorch-benchmarks',model_name= 'resnet50_ferplus_dag',
                  feature_layer = 'pool5_7x7_s1'):
@@ -39,7 +44,7 @@ class Resnet50_Extractor(object):
         # load transformation function
         meta = self.model.meta
         self.transform = compose_transforms(meta, center_crop=True)
-    def run(self, input_dir, output_dir, batch_size=16):
+    def run(self, input_dir, output_dir, batch_size=DEV_BATCH_SIZE):
         '''        
         input_dir: string, 
             The input_dir should have one subdir containing all cropped and aligned face images for 
@@ -56,7 +61,7 @@ class Resnet50_Extractor(object):
             dataset, 
             batch_size = batch_size, 
             shuffle=False, drop_last=False,
-            num_workers=0, pin_memory=False )
+            num_workers=DEV_NUM_WORKERS, pin_memory=False )
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         else:
