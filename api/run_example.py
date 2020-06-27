@@ -1,7 +1,7 @@
 import os
 from tester import Tester
 import time
-example_video = 'examples/utterance_1.mp4'
+example_video = 'refactor/utterance_1.mp4'
 model_weight_path = 'models/model_weights.pth.tar'
 
 tester = Tester(model_weight_path, batch_size=64, workers=8, quiet=True)
