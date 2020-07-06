@@ -53,6 +53,12 @@ sudo apt-get install libjpeg8-dev libtiff5-dev libjasper-dev libpng12-dev #  Ins
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
 sudo apt-get install libxvidcore-dev libx264-dev # Install a few libraries used to read video formats from disk
 ```
+
+Note: if you use Ubuntu18.04 and cannot install libjasper-dev or libpng12-dev, try this
+```
+sudo add-apt-repository 'deb http://security.ubuntu.com/ubuntu xenial-security main'
+sudo apt update
+```
 And then install OpenFace by:
 ```
 bash install.sh
